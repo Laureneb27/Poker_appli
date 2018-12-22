@@ -26,7 +26,7 @@ namespace Poker
         private void CreationPaquetCartes()
         {
             String couleur = "";
-            List<Model.Carte> paquetCartes = new List<Carte>();
+            List<Carte> paquetCartes = new List<Carte>();
             for (int i = 0; i < 4; i++)//Pour chaque couleur
             {
                 switch (i)

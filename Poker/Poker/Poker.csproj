@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3C3E5E12-49D3-41B1-AB64-924C67B50530}</ProjectGuid>
+    <ProjectGuid>{4CFC8ADC-F454-47F9-8FDA-F50042558A26}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Poker</RootNamespace>
     <AssemblyName>Poker</AssemblyName>
@@ -80,6 +80,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
