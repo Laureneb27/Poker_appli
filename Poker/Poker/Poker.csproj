@@ -48,10 +48,9 @@
   <ItemGroup>
     <Compile Include="Model\Carte.cs" />
     <Compile Include="Model\Combinaison.cs" />
-    <Compile Include="Model\ConnexionClient.cs" />
-    <Compile Include="Model\ConnexionServer.cs" />
     <Compile Include="Model\Joueur.cs" />
     <Compile Include="Model\PaquetCartes.cs" />
+    <Compile Include="Model\Partie.cs" />
     <Compile Include="Vue\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
