@@ -32,7 +32,7 @@ namespace Poker
                 switch (i)
                 {
                     case 0:
-                        couleur = "Pique";
+                        couleur = "P";
                         break;
                     case 1:
                         couleur = "Coeur";
