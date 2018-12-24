@@ -14,10 +14,7 @@ namespace Poker.Model
         public string Nom { get => nom; set => nom = value; }
         public int Valeur { get => valeur; set => valeur = value; }
 
-        public void CarteHaute()
-        {
-            Console.Write("einpozinceinzeoo");
-        }
+        public void CarteHaute(){ }
 
         public void Paire()
         {
