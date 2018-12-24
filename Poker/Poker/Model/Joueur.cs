@@ -11,7 +11,7 @@ namespace Poker.Model
         string pseudo, statut, role;
         int argent, mise,valeur_main;
 
-        private Carte[] main_joueur = new Carte[2];
+        private Carte[] main_joueur;
 
         public string Pseudo { get => pseudo; set => pseudo = value; }
         public string Statut { get => statut; set => statut = value; }
