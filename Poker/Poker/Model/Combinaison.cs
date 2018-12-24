@@ -16,7 +16,7 @@ namespace Poker.Model
 
         public void CarteHaute()
         {
-
+            Console.Write("hello");
         }
 
         public void Paire()
