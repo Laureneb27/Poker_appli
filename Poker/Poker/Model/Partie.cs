@@ -8,6 +8,7 @@ namespace Poker.Model
 {
     class Partie
     {
+
         private String id;
         private List<Joueur> liste_Joueur;
         private int argent_depart;
@@ -53,5 +54,6 @@ namespace Poker.Model
         public void JoueurSuivant() { }
         public void FinPartie() { }
         public void AjouterAuPot() { }
+
     }
 }
