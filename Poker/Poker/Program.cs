@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Poker.Model;
+using System;
 using System.Windows.Forms;
 
 namespace Poker

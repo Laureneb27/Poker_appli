@@ -47,13 +47,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Carte.cs" />
+    <Compile Include="Model\Combinaison.cs" />
+    <Compile Include="Model\ConnexionClient.cs" />
+    <Compile Include="Model\ConnexionServer.cs" />
+    <Compile Include="Model\Joueur.cs" />
+    <Compile Include="Model\PaquetCartes.cs" />
     <Compile Include="Vue\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Vue\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controleur\Program.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -79,6 +84,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controleur\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
