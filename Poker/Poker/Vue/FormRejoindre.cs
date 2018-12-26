@@ -29,7 +29,7 @@ namespace Poker.Vue
         {
             pseudoJoueur = textBox_pseudoRejoindre.Text;
             List<Joueur> joueurs = new List<Joueur>();
-            //joueurs.Add(new Joueur(pseudoJoueur, "", "bigBlind", argentPartie, 0, 0));
+            joueurs.Add(new Joueur(pseudoJoueur, "", "bigBlind", 0, 0, 0));
         }
 
         private void FormRejoindre_Load(object sender, EventArgs e)
