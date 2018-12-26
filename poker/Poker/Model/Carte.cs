@@ -11,6 +11,13 @@ namespace Poker.Model
         private int valeur;
         private string couleur;
 
+
+        public Carte(int valeur,string couleur)
+        {
+            this.valeur = valeur;
+            this.couleur = couleur;
+        }
+
         public int Valeur { get => valeur; set => valeur = value; }
         public string Couleur { get => couleur; set => couleur = value; }
     }
