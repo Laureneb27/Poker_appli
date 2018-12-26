@@ -32,9 +32,16 @@ namespace Poker.Vue
             argentPartie = (int)numericUpDown_argent.Value;
             List<Joueur> joueurs = new List<Joueur>();
             joueurs.Add(new Joueur(pseudoJoueur, "","smallBlind",argentPartie,0,0));
-            //Partie partie = new Partie("1", joueurs, argentPartie, paquetCartes, 0, tapis, 5, 10);
+
+            PaquetCartes paquetCartes = new PaquetCartes();
+            Carte[] tapis = new Carte[5];
+
+            Partie partie = new Partie("1", joueurs, argentPartie, paquetCartes, 0, tapis, 5, 10);
             Console.WriteLine("pseudoJoueur est " + pseudoJoueur);
             Console.WriteLine("numeriupdown est " + argentPartie);
+            this.Hide();
+            FormPartie fp = new FormPartie();
+            fp.Show();
         }
 
         private void button_fermer_Click(object sender, EventArgs e)
