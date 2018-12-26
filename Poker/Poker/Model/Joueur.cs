@@ -20,5 +20,16 @@ namespace Poker.Model
         public int Mise { get => mise; set => mise = value; }
         public int Valeur_main { get => valeur_main; set => valeur_main = value; }
         internal Carte[] Main_joueur { get => main_joueur; set => main_joueur = value; }
+
+        public Joueur(string pseudo, string statut, string role, int argent, int mise, int valeur_main)
+        {
+            this.Pseudo = pseudo;
+            this.Statut = statut;
+            this.Role = role;
+            this.Argent = argent;
+            this.Mise = mise;
+            this.Valeur_main = valeur_main;
+            this.Main_joueur = new Carte[2];
+        }
     }
 }

@@ -46,12 +46,36 @@ namespace Poker.Model
         public void GetGagnantPartie() { }
         public void DonnerBlinds() { }
         public void APerdu() { }
-        public void Suivre() { }
-        public void Miser() { }
-        public void Checker() { }
-        public void SeCoucher() { }
-        public void JoueurSuivant() { }
+        public void Suivre(Joueur unJoueur)
+        {
+ 
+        }
+        public void Miser(Joueur unJoueur, Partie unePartie)
+        {
+            //récupere la mise du champ input
+            //somme des mises
+           // mise = +unJoueur.Mise;
+            //argent du joueur
+            //int argent = unJoueur.Argent - mise;
+        }
+        public void Checker()
+        {
+
+        }
+        public void SeCoucher(Joueur unJoueur)
+        {
+        }
+        public void JoueurSuivant(Joueur unJoueur)
+        {
+            if (unJoueur.Statut == "actif")
+            {
+
+            }
+        }
         public void FinPartie() { }
-        public void AjouterAuPot() { }
+        public void AjouterAuPot(Joueur unJoueur, Partie unePartie)
+        {
+            unePartie.pot = +unJoueur.Mise;
+        }
     }
 }
