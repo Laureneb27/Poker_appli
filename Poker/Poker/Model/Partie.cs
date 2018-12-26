@@ -54,7 +54,7 @@ namespace Poker.Model
         public void DistribuerFlop()
         {
             Console.WriteLine("Tapis :");
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 5; i++)
             {
                 Carte carte = paquet_cartes.DistribuerUneCarte();
                 tapis[i] = carte;

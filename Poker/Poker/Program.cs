@@ -35,7 +35,15 @@ namespace Poker
             }
             
             partie.DistribuerFlop();
+            Carte[] cartes = new Carte[7];
 
+            String nom= " ";
+            int valeur = 0;
+            int valeurMain = 0;
+            
+            
+            //Combinaison combi = Combinaison.Recuperer(partie, listeJoueur[0]);
+            //Console.WriteLine(" | nom : " + combi.Nom + " | valeur : " + combi.Valeur + " | valeur Main : " + combi.ValeurMain);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
