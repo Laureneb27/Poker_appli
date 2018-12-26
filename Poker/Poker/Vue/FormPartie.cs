@@ -30,5 +30,9 @@ namespace Poker
             
         }
 
+        private void pictureBox1_Resize(object sender, EventArgs e)
+        {
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+        }
     }
 }
