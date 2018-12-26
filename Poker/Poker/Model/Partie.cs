@@ -44,12 +44,22 @@ namespace Poker.Model
         {
             for (int i = 0; i < 2; i++)
             {
-                //Paquet_cartes.Melanger();
                 foreach (Joueur joueur in liste_Joueur)
                 {
                     joueur.Main_joueur[i] = paquet_cartes.DistribuerUneCarte();
                 }
-            }  
+            }
+        }
+
+        public void DistribuerFlop()
+        {
+            Console.WriteLine("Tapis :");
+            for (int i = 0; i < 3; i++)
+            {
+                Carte carte = paquet_cartes.DistribuerUneCarte();
+                tapis[i] = carte;
+                Console.WriteLine(tapis[i].Valeur + " " + tapis[i].Couleur);
+            }
         }
 
         public void CreerPartie() { }

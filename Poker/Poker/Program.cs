@@ -27,6 +27,7 @@ namespace Poker
 
             Partie partie = new Partie(1, listeJoueur, 500, paquetCartes, 0, tapis, 5, 10);
             partie.DistribuerJoueur();
+            
 
             foreach (Joueur joueur in partie.Liste_Joueur)
             {
@@ -34,11 +35,8 @@ namespace Poker
                 Console.WriteLine(joueur.Main_joueur[0].Valeur + " " + joueur.Main_joueur[0].Couleur);
                 Console.WriteLine(joueur.Main_joueur[1].Valeur + " " + joueur.Main_joueur[1].Couleur);
             }
-            foreach (var carte in partie.Tapis)
-            {
-                //Console.WriteLine(carte.Valeur);
-            }
-
+            
+            partie.DistribuerFlop();
 
 
             Application.EnableVisualStyles();
