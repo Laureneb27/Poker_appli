@@ -10,8 +10,18 @@ namespace Poker.Model
     {
         string pseudo, statut, role;
         int argent, mise,valeur_main;
-
         private Carte[] main_joueur;
+
+        public Joueur(string pseudo, string statut, string role, int argent, int mise, int valeur_main, Carte[] main_joueur)
+        {
+            this.pseudo = pseudo;
+            this.statut = statut;
+            this.role = role;
+            this.argent = argent;
+            this.mise = mise;
+            this.valeur_main = valeur_main;
+            this.main_joueur = main_joueur;
+        }
 
         public string Pseudo { get => pseudo; set => pseudo = value; }
         public string Statut { get => statut; set => statut = value; }
