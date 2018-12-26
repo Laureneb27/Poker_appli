@@ -23,7 +23,7 @@ namespace Poker
             PaquetCartes paquetCartes = new PaquetCartes();
             Carte[] tapis = new Carte[5];
 
-            Partie partie = new Partie(1, listeJoueur, 500, paquetCartes, 0, tapis, 5, 10);
+            Partie partie = new Partie("1", listeJoueur, 500, paquetCartes, 0, tapis, 5, 10);
             partie.DistribuerJoueur();
             
 

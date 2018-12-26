@@ -18,7 +18,7 @@ namespace Poker.Model
         private int petite_blind;
         private int grande_blind;
 
-        public Partie(int id, List<Joueur> liste_Joueur, int argent_depart, PaquetCartes paquet_cartes, int pot, Carte[] tapis, int petite_blind, int grande_blind)
+        public Partie(String id, List<Joueur> liste_Joueur, int argent_depart, PaquetCartes paquet_cartes, int pot, Carte[] tapis, int petite_blind, int grande_blind)
         {
             this.id = id;
             this.liste_Joueur = liste_Joueur;
@@ -37,7 +37,7 @@ namespace Poker.Model
         public Carte[] Tapis { get => tapis; set => tapis = value; }
         public int Petite_blind { get => petite_blind; set => petite_blind = value; }
         public int Grande_blind { get => grande_blind; set => grande_blind = value; }
-        public int Id1 { get => id; set => id = value; }
+        public String Id { get => id; set => id = value; }
 
 
         public void DistribuerJoueur()
