@@ -41,10 +41,9 @@ namespace Poker.Vue
 
         private void button_creer_Click(object sender, EventArgs e)
         {
-            txtStatus.Text += "Server starting ..";
+            Console.WriteLine( "Server starting ..");
             System.Net.IPAddress ip = System.Net.IPAddress.Parse(txtIp.Text);
             server.Start(ip, Convert.ToInt32("8910"));
-
 
             pseudoJoueur = textBox_pseudo.Text;
             argentPartie = (int)numericUpDown_argent.Value;

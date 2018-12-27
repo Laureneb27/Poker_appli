@@ -40,8 +40,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.txtIp = new System.Windows.Forms.TextBox();
             this.txtStatus = new System.Windows.Forms.TextBox();
-            this.txtMessage = new System.Windows.Forms.TextBox();
-            this.btn_send = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -49,7 +47,7 @@
             // textBox_idPartie
             // 
             this.textBox_idPartie.Location = new System.Drawing.Point(276, 129);
-            this.textBox_idPartie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_idPartie.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_idPartie.Name = "textBox_idPartie";
             this.textBox_idPartie.Size = new System.Drawing.Size(133, 22);
             this.textBox_idPartie.TabIndex = 6;
@@ -78,7 +76,7 @@
             // button_rejoindre
             // 
             this.button_rejoindre.Location = new System.Drawing.Point(123, 293);
-            this.button_rejoindre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_rejoindre.Margin = new System.Windows.Forms.Padding(4);
             this.button_rejoindre.Name = "button_rejoindre";
             this.button_rejoindre.Size = new System.Drawing.Size(100, 28);
             this.button_rejoindre.TabIndex = 8;
@@ -89,7 +87,7 @@
             // textBox_pseudoRejoindre
             // 
             this.textBox_pseudoRejoindre.Location = new System.Drawing.Point(276, 197);
-            this.textBox_pseudoRejoindre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_pseudoRejoindre.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_pseudoRejoindre.Name = "textBox_pseudoRejoindre";
             this.textBox_pseudoRejoindre.Size = new System.Drawing.Size(133, 22);
             this.textBox_pseudoRejoindre.TabIndex = 10;
@@ -108,7 +106,7 @@
             // 
             this.button_fermer.BackColor = System.Drawing.SystemColors.Control;
             this.button_fermer.Location = new System.Drawing.Point(295, 293);
-            this.button_fermer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_fermer.Margin = new System.Windows.Forms.Padding(4);
             this.button_fermer.Name = "button_fermer";
             this.button_fermer.Size = new System.Drawing.Size(100, 28);
             this.button_fermer.TabIndex = 11;
@@ -120,7 +118,7 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(427, 49);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(43, 39);
             this.pictureBox1.TabIndex = 12;
@@ -130,7 +128,7 @@
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(32, 49);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(43, 39);
             this.pictureBox2.TabIndex = 13;
@@ -149,28 +147,8 @@
             this.txtStatus.Location = new System.Drawing.Point(451, 111);
             this.txtStatus.Multiline = true;
             this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(292, 278);
+            this.txtStatus.Size = new System.Drawing.Size(292, 232);
             this.txtStatus.TabIndex = 19;
-            // 
-            // txtMessage
-            // 
-            this.txtMessage.Location = new System.Drawing.Point(13, 345);
-            this.txtMessage.Margin = new System.Windows.Forms.Padding(4);
-            this.txtMessage.Multiline = true;
-            this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(332, 112);
-            this.txtMessage.TabIndex = 20;
-            // 
-            // btn_send
-            // 
-            this.btn_send.Location = new System.Drawing.Point(353, 429);
-            this.btn_send.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_send.Name = "btn_send";
-            this.btn_send.Size = new System.Drawing.Size(100, 28);
-            this.btn_send.TabIndex = 21;
-            this.btn_send.Text = "Send";
-            this.btn_send.UseVisualStyleBackColor = true;
-            this.btn_send.Click += new System.EventHandler(this.btn_send_Click);
             // 
             // FormRejoindre
             // 
@@ -178,8 +156,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(830, 470);
-            this.Controls.Add(this.btn_send);
-            this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.txtStatus);
             this.Controls.Add(this.txtIp);
             this.Controls.Add(this.pictureBox2);
@@ -191,7 +167,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox_idPartie);
             this.Controls.Add(this.label_pseudo);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormRejoindre";
             this.Text = "FormRejoindre";
             this.Load += new System.EventHandler(this.FormRejoindre_Load);
@@ -215,7 +191,5 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TextBox txtIp;
         private System.Windows.Forms.TextBox txtStatus;
-        private System.Windows.Forms.TextBox txtMessage;
-        private System.Windows.Forms.Button btn_send;
     }
 }

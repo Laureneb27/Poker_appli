@@ -2,12 +2,7 @@
 using SimpleTCP;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Poker.Vue
@@ -31,9 +26,7 @@ namespace Poker.Vue
             client.Connect(txtIp.Text, Convert.ToInt32("8910"));
             button_rejoindre.Enabled = false;
 
-            String message = textBox_pseudoRejoindre.Text + " c'est connecté.";
-            client.WriteLineAndGetReply(message, TimeSpan.FromSeconds(3));
-
+            Console.WriteLine(textBox_pseudoRejoindre.Text + " c'est connecté.");
 
             pseudoJoueur = textBox_pseudoRejoindre.Text;
             List<Joueur> joueurs = new List<Joueur>();
@@ -52,13 +45,7 @@ namespace Poker.Vue
             txtStatus.Invoke((MethodInvoker)delegate ()
             {
                 txtStatus.Text += e.MessageString;
-
             });
-        }
-
-        private void btn_send_Click(object sender, EventArgs e)
-        {
-            client.WriteLineAndGetReply(txtMessage.Text, TimeSpan.FromSeconds(3));
         }
     }
 }
