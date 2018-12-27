@@ -49,8 +49,9 @@ namespace Poker.Vue
                         xmlSerializer.Serialize(textWriter, unePartie);
                         message =  textWriter.ToString();
                     }
-
+                    Console.WriteLine(message);
                     e.ReplyLine(message);
+                    
                     Console.WriteLine("Bien recu");
 
                     //e.ReplyLine(Partie partie);
@@ -87,7 +88,5 @@ namespace Poker.Vue
         {
             this.Close();
         }
-
- 
     }
 }
