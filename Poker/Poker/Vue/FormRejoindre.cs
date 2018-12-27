@@ -26,7 +26,10 @@ namespace Poker.Vue
         {
             client.Connect(txtIp.Text, Convert.ToInt32("8910"));
             button_rejoindre.Enabled = false;
-            client.WriteLineAndGetReply("Coucou je suis là", TimeSpan.FromSeconds(3));
+            
+
+
+            client.WriteLineAndGetReply($"Coucou je suis là !{textBox_pseudoRejoindre.Text}", TimeSpan.FromSeconds(3));
 
             Console.WriteLine(textBox_pseudoRejoindre.Text + " c'est connecté.");
 
