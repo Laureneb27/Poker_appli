@@ -77,5 +77,10 @@ namespace Poker.Vue
                 unePartie.Liste_Joueur.Add(new Joueur(pseudoJoueur, "", "bigBlind", unePartie.Argent_depart, 0, 0));
             }
         }
+
+        private void label_pseudo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
