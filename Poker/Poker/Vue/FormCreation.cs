@@ -36,25 +36,36 @@ namespace Poker.Vue
             server.DataReceived += Server_DataReceive;
         }
 
-        private void Server_DataReceive(object sender, SimpleTCP.Message e)
+        private void Server_DataReceive(object sender, SimpleTCP.Message e)//Recois du client
         {
 
             txtStatus.Invoke((MethodInvoker)delegate ()
-            {        
-                if (e.MessageString != "")
+            {
+                Console.WriteLine(e.MessageString);
+
+                try
                 {
-                    
-                    
+                    unePartie = JsonConvert.DeserializeObject<Partie>(e.MessageString);
+                    foreach (Joueur unJoueur in unePartie.Liste_Joueur)
+                    {
+                        Console.WriteLine(unJoueur.Pseudo);
+                    }
+                }
+                catch (Exception exp)
+                {
+
+                    Console.WriteLine(exp.Message);
+                }
+                finally
+                {
                     var partieDataString = JsonConvert.SerializeObject(unePartie);
 
                     Console.WriteLine("Bien recu");
-                    e.Reply(partieDataString);
+                    e.Reply(partieDataString); //Envoie la partie a chaque entree de joueur
                     Console.WriteLine(partieDataString);
                 }
-                
-                //txtStatus.Text += e.MessageString;
                 txtStatus.Text += "ok";
-                //e.ReplyLine(string.Format("You said : {0}", e.MessageString));
+
             });
         }
 
@@ -64,15 +75,18 @@ namespace Poker.Vue
             System.Net.IPAddress ip = System.Net.IPAddress.Parse(txtIp.Text);
             server.Start(ip, Convert.ToInt32("8910"));
 
-            pseudoJoueur = textBox_pseudo.Text;
             argentPartie = (int)numericUpDown_argent.Value;
-            List<Joueur> joueurs = new List<Joueur>();
-            joueurs.Add(new Joueur(pseudoJoueur, "", "smallBlind", argentPartie, 0, 0));
-
             PaquetCartes paquetCartes = new PaquetCartes();
             Carte[] tapis = new Carte[5];
+            List<Joueur> joueurs = new List<Joueur>();
 
             unePartie = new Partie("1", joueurs, argentPartie, paquetCartes, 0, tapis, 5, 10);
+
+            Joueur joueur = new Joueur();
+            pseudoJoueur = textBox_pseudo.Text;
+            joueur.AjouteJoueur(unePartie, pseudoJoueur);
+
+
             Console.WriteLine("pseudoJoueur est " + pseudoJoueur);
             Console.WriteLine("numeriupdown est " + argentPartie);
             //this.Hide();

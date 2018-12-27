@@ -46,5 +46,16 @@ namespace Poker.Model
             this.Valeur_main = valeur_main;
             this.Main_joueur = new Carte[2];
         }
+
+        public Partie AjouteJoueur(Partie unePartie, String pseudoJoueur )
+        {
+            if (unePartie != null)
+            {
+                unePartie.Liste_Joueur.Add(new Joueur(pseudoJoueur, "", "", unePartie.Argent_depart, 0, 0));
+            }
+            return unePartie;
+        }
     }
+
+
 }
