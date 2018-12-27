@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Poker.Model
 {
-    class Joueur
+    public class Joueur
     {
         string pseudo, statut, role;
         int argent, mise,valeur_main;
@@ -21,6 +21,11 @@ namespace Poker.Model
             this.mise = mise;
             this.valeur_main = valeur_main;
             this.main_joueur = main_joueur;
+        }
+
+        public Joueur()
+        {
+          
         }
 
         public string Pseudo { get => pseudo; set => pseudo = value; }

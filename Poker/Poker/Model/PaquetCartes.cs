@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Poker.Model
 {
-    class PaquetCartes
+    public class PaquetCartes
     {
         private List<Carte> paquet_cartes;
 
