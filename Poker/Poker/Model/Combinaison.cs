@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace Poker.Model
 {
-    class Combinaison
+    class Combinaison : IComparable
     {
+        private Joueur joueur;
         private Carte[] cartes;
         private string nom;
         private int valeur;
         private int valeurMain;
 
-        public Combinaison(Carte[] cartes, string nom, int valeur, int valeurMain)
+        public Combinaison(Joueur unJoueur, Carte[] cartes, string nom, int valeur, int valeurMain)
         {
+            this.joueur = unJoueur;
             this.cartes = cartes;
             this.nom = nom;
             this.valeur = valeur;
@@ -25,8 +27,8 @@ namespace Poker.Model
         public string Nom { get => nom; set => nom = value; }
         public int Valeur { get => valeur; set => valeur = value; }
         public int ValeurMain { get => valeurMain; set => valeurMain = value; }
+        public Joueur Joueur { get => joueur; set => joueur = value; }
 
-        
         public Carte[] FusionCartes(Partie unePartie, Joueur unJoueur)
         {
             Carte[] fusionCartes = new Carte[unJoueur.Main_joueur.Length + unePartie.Tapis.Length];
@@ -44,7 +46,7 @@ namespace Poker.Model
         public static Combinaison Recuperer(Partie unePartie, Joueur unJoueur)
         {
             Carte[] cartes = new Carte[7];
-            Combinaison c = new Combinaison(cartes, " ", 0, 0);
+            Combinaison c = new Combinaison(unJoueur, cartes, " ", 0, 0);
             c.Cartes = c.FusionCartes(unePartie, unJoueur);
             c.Cartes = c.TriCartes(c.Cartes);
             if (c.QuinteFlushRoyale(c) != false)
@@ -383,6 +385,17 @@ namespace Poker.Model
                 }
             }
             return false;
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null) return 1;
+
+            Carte otherCombinaison = obj as Carte;
+            if (otherCombinaison != null)
+                return this.valeur.CompareTo(otherCombinaison.Valeur);
+            else
+                throw new ArgumentException("L'objet n'est pas une Combinaison");
         }
     }
 }

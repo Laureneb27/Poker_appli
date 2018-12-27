@@ -98,5 +98,10 @@ namespace Poker.Vue
         {
             this.Close();
         }
+
+        private void numericUpDown_argent_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
