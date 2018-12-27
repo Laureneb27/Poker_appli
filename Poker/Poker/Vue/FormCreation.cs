@@ -43,9 +43,9 @@ namespace Poker.Vue
             {        
                 if (e.MessageString != "")
                 {
-                    Partie partie = new Partie();
                     
-                    var partieDataString = JsonConvert.SerializeObject(partie);
+                    
+                    var partieDataString = JsonConvert.SerializeObject(unePartie);
 
                     Console.WriteLine("Bien recu");
                     e.Reply(partieDataString);
