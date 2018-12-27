@@ -1,4 +1,5 @@
-﻿using Poker.Model;
+﻿using Newtonsoft.Json;
+using Poker.Model;
 using SimpleTCP;
 using System;
 using System.Collections.Generic;
@@ -53,39 +54,19 @@ namespace Poker.Vue
             client.DataReceived += DataReceived;
         }
 
-        public void serialize()
-        {
-            Partie partie = new Partie();
-            File file = new File("temp.dat");
-            Stream stream = file.Open(FileMode.Create);
-            BinaryFormatter binary = new BinaryFormatter();
-            binary.Serialize(stream, partie);
-            stream.Close();
-        }
 
-        public void DeSerialize()
+        private void DataReceived(object sender, SimpleTCP.Message e)
         {
-            Partie partie = new Partie();
-            File file = new File("temp.dat");
-            Stream stream = file.Open(FileMode.Open);
-            BinaryFormatter binary = new BinaryFormatter();
-            partie = (Partie)binary.Deserialize(stream);
+            Partie partie = new Partie() ;
+            txtStatus.Invoke((MethodInvoker)delegate ()
+            {
+                partie = JsonConvert.DeserializeObject<Partie>(e.MessageString);
+            });
+
             foreach (var joueur in partie.Liste_Joueur)
             {
                 Console.WriteLine(joueur.Pseudo);
             }
-            stream.Close();
-        }
-
-        private void DataReceived(object sender, SimpleTCP.Message e)
-        {
-            txtStatus.Invoke((MethodInvoker)delegate ()
-            {
-                //txtStatus.Text += e.MessageString;
-                
-                
-                DeSerialize();
-            });
         }
     }
 }
