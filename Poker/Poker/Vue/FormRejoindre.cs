@@ -26,8 +26,6 @@ namespace Poker.Vue
         {
             client.Connect(txtIp.Text, Convert.ToInt32("8910"));
             button_rejoindre.Enabled = false;
-            
-
 
             client.WriteLineAndGetReply("Coucou je suis là !", TimeSpan.FromSeconds(3));
 
@@ -37,6 +35,10 @@ namespace Poker.Vue
             pseudoJoueur = textBox_pseudoRejoindre.Text;
             List<Joueur> joueurs = new List<Joueur>();
             joueurs.Add(new Joueur(pseudoJoueur, "", "bigBlind", 0, 0, 0));
+
+            FormPartie fp = new FormPartie();
+            fp.Show();
+
         }
 
         private void FormRejoindre_Load(object sender, EventArgs e)

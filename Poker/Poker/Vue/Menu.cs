@@ -30,5 +30,6 @@ namespace Poker.Vue
             FormRejoindre fp = new FormRejoindre();
             fp.Show();
         }
+
     }
 }

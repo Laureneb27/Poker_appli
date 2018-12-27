@@ -5,10 +5,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace Poker.Vue
 {
@@ -17,6 +20,7 @@ namespace Poker.Vue
         string pseudoJoueur;
         int argentPartie;
         SimpleTcpServer server;
+        Partie unePartie;
         public FormCreation()
         {
             InitializeComponent();
@@ -32,15 +36,27 @@ namespace Poker.Vue
 
         private void Server_DataReceive(object sender, SimpleTCP.Message e)
         {
+            
             txtStatus.Invoke((MethodInvoker)delegate ()
             {
+                String message;
                 Console.WriteLine("---"+e.MessageString);
                 if (e.MessageString != "")
                 {
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(Partie));
+                    using (StringWriter textWriter = new StringWriter())
+                    {
+                        xmlSerializer.Serialize(textWriter, unePartie);
+                        message =  textWriter.ToString();
+                    }
+
+                    e.ReplyLine(message);
                     Console.WriteLine("Bien recu");
+
+                    //e.ReplyLine(Partie partie);
                 }
                 txtStatus.Text += e.MessageString;
-                txtStatus.Text += "Bien recu";
+                txtStatus.Text += "ok";
                 e.ReplyLine(string.Format("You said : {0}", e.MessageString));
             });
         }
@@ -59,7 +75,7 @@ namespace Poker.Vue
             PaquetCartes paquetCartes = new PaquetCartes();
             Carte[] tapis = new Carte[5];
 
-            Partie partie = new Partie("1", joueurs, argentPartie, paquetCartes, 0, tapis, 5, 10);
+            unePartie = new Partie("1", joueurs, argentPartie, paquetCartes, 0, tapis, 5, 10);
             Console.WriteLine("pseudoJoueur est " + pseudoJoueur);
             Console.WriteLine("numeriupdown est " + argentPartie);
             //this.Hide();
