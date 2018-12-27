@@ -35,7 +35,7 @@ namespace Poker.Vue
             txtStatus.Invoke((MethodInvoker)delegate ()
             {
                 Console.WriteLine("---"+e.MessageString);
-                if (e.MessageString == "Coucou je suis là !")
+                if (e.MessageString != "")
                 {
                     Console.WriteLine("Bien recu");
                 }
