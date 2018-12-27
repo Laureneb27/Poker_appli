@@ -59,10 +59,11 @@ namespace Poker.Vue
 
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(Partie));
                 Partie unePartie;
-                using (XmlReader reader = XmlReader.Create(e.MessageString))
-                {
-                    unePartie = (Partie)xmlSerializer.Deserialize(reader);
-                }
+
+                byte[] byteArray = Encoding.UTF8.GetBytes(e.MessageString);
+                MemoryStream stream = new MemoryStream(byteArray);
+
+                unePartie = (Partie)xmlSerializer.Deserialize(stream);
 
                 foreach (var joueur in unePartie.Liste_Joueur)
                 {
