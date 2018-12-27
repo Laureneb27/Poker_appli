@@ -30,5 +30,9 @@ namespace Poker
             
         }
 
+        private void button_suivre_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

@@ -88,6 +88,7 @@
             this.button_suivre.TabIndex = 11;
             this.button_suivre.Text = "Suivre";
             this.button_suivre.UseVisualStyleBackColor = true;
+            this.button_suivre.Click += new System.EventHandler(this.button_suivre_Click);
             // 
             // numericUpDown_mise
             // 
