@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Poker.Model
 {
-    class Carte
+    public class Carte
     {
         private int valeur;
         private string couleur;
@@ -16,6 +16,10 @@ namespace Poker.Model
         {
             this.valeur = valeur;
             this.couleur = couleur;
+        }
+
+        public Carte()
+        {
         }
 
         public int Valeur { get => valeur; set => valeur = value; }

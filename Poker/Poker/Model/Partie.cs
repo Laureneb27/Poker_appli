@@ -4,16 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Poker.Model
 {
-    class Partie
+    public class Partie
     {
+        [XmlIgnore]
         private String id;
+        [XmlIgnore]
         private List<Joueur> liste_Joueur;
         private int argent_depart;
+        [XmlIgnore]
         private PaquetCartes paquet_cartes;
         private int pot;
+        [XmlIgnore]
         private Carte[] tapis;
         private int petite_blind;
         private int grande_blind;
@@ -28,6 +33,10 @@ namespace Poker.Model
             this.tapis = tapis;
             this.petite_blind = petite_blind;
             this.grande_blind = grande_blind;
+        }
+        public Partie()
+        {
+            
         }
 
         public List<Joueur> Liste_Joueur { get => liste_Joueur; set => liste_Joueur = value; }
@@ -64,7 +73,14 @@ namespace Poker.Model
 
         public void CreerPartie() { }
         public void RejoindrePartie() { }
-        public void SetXML() { }
+        public void SetXML()
+        {
+            String path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//poker.xml";
+            System.Xml.Serialization.XmlSerializer writer = new System.Xml.Serialization.XmlSerializer(typeof(Partie));
+            System.IO.FileStream file = System.IO.File.Create(path);
+            writer.Serialize(file, this);
+            file.Close();
+        }
         public void GetXML() { }
         public void UpdateXML() { }
         public void GetGagnantPartie() { }

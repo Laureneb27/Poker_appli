@@ -1,4 +1,5 @@
 ﻿using Poker.Model;
+using SimpleTCP;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,7 @@ namespace Poker.Vue
     {
         string pseudoJoueur;
         int argentPartie;
-        
+        SimpleTcpServer server;
         public FormCreation()
         {
             InitializeComponent();
@@ -23,11 +24,28 @@ namespace Poker.Vue
 
         private void FormCreation_Load(object sender, EventArgs e)
         {
+            server = new SimpleTcpServer();
+            server.Delimiter = 0x13;
+            server.StringEncoder = Encoding.UTF8;
+            server.DataReceived += Server_DataReceive;
+        }
 
+        private void Server_DataReceive(object sender, SimpleTCP.Message e)
+        {
+            txtStatus.Invoke((MethodInvoker)delegate ()
+            {
+                txtStatus.Text += e.MessageString;
+                e.ReplyLine(string.Format("You said : {0}", e.MessageString));
+            });
         }
 
         private void button_creer_Click(object sender, EventArgs e)
         {
+            txtStatus.Text += "Server starting ..";
+            System.Net.IPAddress ip = System.Net.IPAddress.Parse(txtIp.Text);
+            server.Start(ip, Convert.ToInt32("8910"));
+
+
             pseudoJoueur = textBox_pseudo.Text;
             argentPartie = (int)numericUpDown_argent.Value;
             List<Joueur> joueurs = new List<Joueur>();

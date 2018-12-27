@@ -36,6 +36,8 @@ namespace Poker
             
             partie.DistribuerFlop();
 
+            partie.SetXML();
+
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
