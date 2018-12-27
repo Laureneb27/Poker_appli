@@ -57,7 +57,7 @@ namespace Poker.Vue
                 }
                 txtStatus.Text += e.MessageString;
                 txtStatus.Text += "ok";
-                e.ReplyLine(string.Format("You said : {0}", e.MessageString));
+                //e.ReplyLine(string.Format("You said : {0}", e.MessageString));
             });
         }
 
