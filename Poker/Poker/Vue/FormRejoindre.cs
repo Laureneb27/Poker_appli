@@ -31,6 +31,10 @@ namespace Poker.Vue
             client.Connect(txtIp.Text, Convert.ToInt32("8910"));
             button_rejoindre.Enabled = false;
 
+            String message = textBox_pseudoRejoindre.Text + " c'est connecté.";
+            client.WriteLineAndGetReply(message, TimeSpan.FromSeconds(3));
+
+
             pseudoJoueur = textBox_pseudoRejoindre.Text;
             List<Joueur> joueurs = new List<Joueur>();
             joueurs.Add(new Joueur(pseudoJoueur, "", "bigBlind", 0, 0, 0));

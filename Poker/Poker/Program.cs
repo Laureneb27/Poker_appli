@@ -36,12 +36,12 @@ namespace Poker
             
             partie.DistribuerFlop();
 
-            partie.SetXML();
+            //partie.SetXML();
 
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Vue.FormCreation());
+            Application.Run(new Vue.Menu());
         }        
     }
 }

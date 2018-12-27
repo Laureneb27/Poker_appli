@@ -57,7 +57,7 @@ namespace Poker.Vue
             Partie partie = new Partie("1", joueurs, argentPartie, paquetCartes, 0, tapis, 5, 10);
             Console.WriteLine("pseudoJoueur est " + pseudoJoueur);
             Console.WriteLine("numeriupdown est " + argentPartie);
-            this.Hide();
+            //this.Hide();
             FormPartie fp = new FormPartie();
             fp.Show();
         }
