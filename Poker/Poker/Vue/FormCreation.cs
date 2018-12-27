@@ -49,8 +49,9 @@ namespace Poker.Vue
 
                     Console.WriteLine("Bien recu");
                     e.Reply(partieDataString);
+                    Console.WriteLine(partieDataString);
                 }
-                Console.WriteLine(partieDataString);
+                
                 //txtStatus.Text += e.MessageString;
                 txtStatus.Text += "ok";
                 //e.ReplyLine(string.Format("You said : {0}", e.MessageString));
