@@ -62,17 +62,35 @@ namespace Poker.Model
 
         public void DistribuerFlop()
         {
-            Console.WriteLine("Tapis :");
             for (int i = 0; i < 3; i++)
             {
                 Carte carte = paquet_cartes.DistribuerUneCarte();
                 tapis[i] = carte;
-                Console.WriteLine(tapis[i].Valeur + " " + tapis[i].Couleur);
             }
         }
 
-        public void CreerPartie() { }
-        public void RejoindrePartie() { }
+        public void DistribuerRiver()
+        {
+            paquet_cartes.DistribuerUneCarte();
+            Carte carte = paquet_cartes.DistribuerUneCarte();
+            tapis[3] = carte;
+        }
+
+        public void DistribuerTapis()
+        {
+            paquet_cartes.DistribuerUneCarte();
+            Carte carte = paquet_cartes.DistribuerUneCarte();
+            tapis[4] = carte;
+        }
+
+        public void DonnerArgentJoueur(Partie unePartie)
+        {
+            for (int i = 0; i < unePartie.Liste_Joueur.Count(); i++)
+            {
+                unePartie.Liste_Joueur[i].Argent = unePartie.Argent_depart;
+            }
+        }
+
         public void SetXML()
         {
             String path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//poker.xml";
@@ -81,41 +99,119 @@ namespace Poker.Model
             writer.Serialize(file, this);
             file.Close();
         }
+
         public void GetXML() { }
+
         public void UpdateXML() { }
-        public void GetGagnantPartie() { }
-        public void DonnerBlinds() { }
-        public void APerdu() { }
-        public void Suivre(Joueur unJoueur)
-        {
- 
-        }
-        public void Miser(Joueur unJoueur, Partie unePartie)
-        {
-            //récupere la mise du champ input
-            //somme des mises
-           // mise = +unJoueur.Mise;
-            //argent du joueur
-            //int argent = unJoueur.Argent - mise;
-        }
-        public void Checker()
-        {
 
-        }
-        public void SeCoucher(Joueur unJoueur)
+        public Joueur RecupererGagnantPartie(Partie unePartie)
         {
-        }
-        public void JoueurSuivant(Joueur unJoueur)
-        {
-            if (unJoueur.Statut == "actif")
+            List<Combinaison> listeCombinaisons = new List<Combinaison>();
+            
+            for (int i = 0; i < unePartie.Liste_Joueur.Count(); i++)
             {
+                listeCombinaisons.Add(Combinaison.Recuperer(unePartie, unePartie.Liste_Joueur[i]));
+            }
 
+            listeCombinaisons.Sort();
+
+            if (listeCombinaisons[listeCombinaisons.Count() - 2].Valeur == listeCombinaisons[listeCombinaisons.Count() - 1].Valeur)
+            {
+                if (listeCombinaisons[listeCombinaisons.Count() - 2].ValeurMain > listeCombinaisons[listeCombinaisons.Count() - 1].ValeurMain)
+                {
+                    return listeCombinaisons[listeCombinaisons.Count() - 2].Joueur;
+                }
+                else
+                {
+                    return listeCombinaisons[listeCombinaisons.Count() - 1].Joueur;
+                }
+            }
+            else
+            {
+                return listeCombinaisons[listeCombinaisons.Count() - 1].Joueur;
             }
         }
-        public void FinPartie() { }
-        public void AjouterAuPot(Joueur unJoueur, Partie unePartie)
+
+        public void DonnerLesRoles(Partie unePartie, int numeroJoueur)
         {
-            unePartie.pot = +unJoueur.Mise;
+            unePartie.Liste_Joueur[numeroJoueur - 1].Role = "petite";
+            unePartie.Liste_Joueur[numeroJoueur].Role = "grande";
+        }
+
+        public void CreationDesBlinds(Partie unePartie)
+        {
+            double temp = unePartie.Argent_depart / 100;
+            temp = Math.Round(temp, 2);
+            unePartie.Grande_blind = Convert.ToInt32(temp);
+            temp = temp / 2;
+            temp = Math.Round(temp, 2);
+            unePartie.Petite_blind = Convert.ToInt32(temp);
+        }
+
+        public void MiserBlinds(Partie unePartie)
+        {
+            for (int i = 0; i < unePartie.Liste_Joueur.Count(); i++)
+            {
+                if (unePartie.Liste_Joueur[i].Role == "petite")
+                {
+                    unePartie.Liste_Joueur[i].Mise = unePartie.Petite_blind;
+                    unePartie.Liste_Joueur[i].Argent = unePartie.Liste_Joueur[i].Argent - unePartie.Petite_blind;
+                }
+                else if (unePartie.Liste_Joueur[i].Role == "grande")
+                {
+                    unePartie.Liste_Joueur[i].Mise = unePartie.Grande_blind;
+                    unePartie.Liste_Joueur[i].Argent = unePartie.Liste_Joueur[i].Argent - unePartie.Grande_blind;
+                }
+            }
+        }
+
+        public void Suivre(Joueur unJoueur, Joueur joueurAvant)
+        {
+            unJoueur.Argent = unJoueur.Argent + unJoueur.Mise - joueurAvant.Mise;
+            unJoueur.Mise = joueurAvant.Mise;
+        }
+
+        public void Miser(Joueur unJoueur, int mise)
+        {
+            unJoueur.Statut = "miser";
+            unJoueur.Argent = unJoueur.Argent + unJoueur.Mise - mise;
+            unJoueur.Mise = mise;
+        }
+
+        public void Checker(Joueur unJoueur)
+        {
+            unJoueur.Statut = "checker";
+        }
+
+        public void SeCoucher(Joueur unJoueur, Partie unePartie)
+        {
+            unJoueur.Statut = "coucher";
+        }
+
+        public void AjouterAuPot(Partie unePartie)
+        {
+            for (int i = 0; i < unePartie.Liste_Joueur.Count(); i++)
+            {
+                unePartie.Pot = unePartie.Pot + unePartie.Liste_Joueur[i].Mise;
+                unePartie.Liste_Joueur[i].Mise = 0;
+            }
+        }
+
+        public void JoueurSuivant(Joueur unJoueur){ }
+
+        public void FinPartie(Joueur unJoueurGagnant, Partie unePartie)
+        {
+            unJoueurGagnant.Argent = unePartie.Pot;
+            unePartie.Pot = 0;
+            unePartie.Tapis = new Carte[5];
+
+            for (int i = 0; i < unePartie.Liste_Joueur.Count(); i++)
+            {
+                unePartie.Liste_Joueur[i].Mise = 0;
+                unePartie.Liste_Joueur[i].Statut = "attente";
+                unePartie.Liste_Joueur[i].Role = " ";
+                unePartie.Liste_Joueur[i].Main_joueur = new Carte[2];
+            }
         }
     }
 }
