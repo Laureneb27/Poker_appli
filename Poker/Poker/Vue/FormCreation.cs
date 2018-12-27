@@ -25,6 +25,15 @@ namespace Poker.Vue
         {
             InitializeComponent();
         }
+        public void serialize()
+        {
+            Partie partie = new Partie();
+            File file = new File("temp.dat");
+            Stream stream = file.Open(FileMode.Create);
+            BinaryFormatter binary = new BinaryFormatter();
+            binary.Serialize(stream, partie);
+            stream.Close();
+        }
 
         private void FormCreation_Load(object sender, EventArgs e)
         {
@@ -43,12 +52,14 @@ namespace Poker.Vue
                 Console.WriteLine("---"+e.MessageString);
                 if (e.MessageString != "")
                 {
-                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(Partie));
-                    using (StringWriter textWriter = new StringWriter())
-                    {
-                        xmlSerializer.Serialize(textWriter, unePartie);
-                        message =  textWriter.ToString();
-                    }
+
+                    serialize();
+                    //XmlSerializer xmlSerializer = new XmlSerializer(typeof(Partie));
+                    //using (StringWriter textWriter = new StringWriter())
+                    //{
+                    //    xmlSerializer.Serialize(textWriter, unePartie);
+                    //    message =  textWriter.ToString();
+                    //}
                     Console.WriteLine(message);
                     e.ReplyLine(message);
                     

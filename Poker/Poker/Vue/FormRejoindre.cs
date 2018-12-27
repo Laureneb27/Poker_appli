@@ -4,10 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
+
 
 namespace Poker.Vue
 {
@@ -51,27 +53,38 @@ namespace Poker.Vue
             client.DataReceived += DataReceived;
         }
 
+        public void serialize()
+        {
+            Partie partie = new Partie();
+            File file = new File("temp.dat");
+            Stream stream = file.Open(FileMode.Create);
+            BinaryFormatter binary = new BinaryFormatter();
+            binary.Serialize(stream, partie);
+            stream.Close();
+        }
+
+        public void DeSerialize()
+        {
+            Partie partie = new Partie();
+            File file = new File("temp.dat");
+            Stream stream = file.Open(FileMode.Open);
+            BinaryFormatter binary = new BinaryFormatter();
+            partie = (Partie)binary.Deserialize(stream);
+            foreach (var joueur in partie.Liste_Joueur)
+            {
+                Console.WriteLine(joueur.Pseudo);
+            }
+            stream.Close();
+        }
+
         private void DataReceived(object sender, SimpleTCP.Message e)
         {
             txtStatus.Invoke((MethodInvoker)delegate ()
             {
-                txtStatus.Text += e.MessageString;
-
-                var serializer = new XmlSerializer(typeof(Partie));
-                Partie unePartie;
-
-                using (TextReader reader = new StringReader(e.MessageString))
-                {
-                    unePartie = (Partie)serializer.Deserialize(reader);
-                }
-
+                //txtStatus.Text += e.MessageString;
                 
-
-                foreach (var joueur in unePartie.Liste_Joueur)
-                {
-                    Console.WriteLine(joueur.Pseudo);
-                }
                 
+                DeSerialize();
             });
         }
     }
