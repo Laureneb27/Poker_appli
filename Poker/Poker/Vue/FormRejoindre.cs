@@ -34,17 +34,13 @@ namespace Poker.Vue
             button_rejoindre.Enabled = false;
 
             client.WriteLineAndGetReply("Coucou je suis la", TimeSpan.FromSeconds(3));
-
-
             Console.WriteLine(textBox_pseudoRejoindre.Text + " c'est connecte");
-
             pseudoJoueur = textBox_pseudoRejoindre.Text;
             List<Joueur> joueurs = new List<Joueur>();
             joueurs.Add(new Joueur(pseudoJoueur, "", "bigBlind", 0, 0, 0));
 
             FormPartie fp = new FormPartie();
             fp.Show();
-
         }
 
         private void FormRejoindre_Load(object sender, EventArgs e)
@@ -54,18 +50,31 @@ namespace Poker.Vue
             client.DataReceived += DataReceived;
         }
 
-
         private void DataReceived(object sender, SimpleTCP.Message e)
         {
-            Partie partie = new Partie() ;
+            Partie partie = new Partie();
             txtStatus.Invoke((MethodInvoker)delegate ()
             {
                 partie = JsonConvert.DeserializeObject<Partie>(e.MessageString);
+                var findPseudo = partie.Liste_Joueur.Find(x => x.Pseudo == pseudoJoueur);
+
+                if (findPseudo!=null)
+                {
+                    AjouteJoueur(partie);
+                }
             });
 
             foreach (var joueur in partie.Liste_Joueur)
             {
                 Console.WriteLine(joueur.Pseudo);
+            }
+        }
+        public void AjouteJoueur(Partie unePartie)
+        {
+            if (unePartie != null)
+            {
+                pseudoJoueur = textBox_pseudoRejoindre.Text;
+                unePartie.Liste_Joueur.Add(new Joueur(pseudoJoueur, "", "bigBlind", unePartie.Argent_depart, 0, 0));
             }
         }
     }
