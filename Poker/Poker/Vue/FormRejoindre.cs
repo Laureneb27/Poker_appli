@@ -57,13 +57,15 @@ namespace Poker.Vue
             {
                 txtStatus.Text += e.MessageString;
 
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Partie));
+                var serializer = new XmlSerializer(typeof(Partie));
                 Partie unePartie;
 
-                byte[] byteArray = Encoding.UTF8.GetBytes(e.MessageString);
-                MemoryStream stream = new MemoryStream(byteArray);
+                using (TextReader reader = new StringReader(e.MessageString))
+                {
+                    unePartie = (Partie)serializer.Deserialize(reader);
+                }
 
-                unePartie = (Partie)xmlSerializer.Deserialize(stream);
+                
 
                 foreach (var joueur in unePartie.Liste_Joueur)
                 {
