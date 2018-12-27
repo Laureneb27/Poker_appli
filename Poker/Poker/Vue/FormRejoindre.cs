@@ -29,9 +29,10 @@ namespace Poker.Vue
             
 
 
-            client.WriteLineAndGetReply($"Coucou je suis là !{textBox_pseudoRejoindre.Text}", TimeSpan.FromSeconds(3));
+            client.WriteLineAndGetReply("Coucou je suis là !", TimeSpan.FromSeconds(3));
 
-            Console.WriteLine(textBox_pseudoRejoindre.Text + " c'est connecté.");
+
+            Console.WriteLine(textBox_pseudoRejoindre.Text + " c'est connecté .");
 
             pseudoJoueur = textBox_pseudoRejoindre.Text;
             List<Joueur> joueurs = new List<Joueur>();
