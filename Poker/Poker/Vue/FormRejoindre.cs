@@ -2,9 +2,12 @@
 using SimpleTCP;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace Poker.Vue
 {
@@ -52,8 +55,20 @@ namespace Poker.Vue
         {
             txtStatus.Invoke((MethodInvoker)delegate ()
             {
-                txtStatus.Text += e.MessageString; 
+                txtStatus.Text += e.MessageString;
 
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Partie));
+                Partie unePartie;
+                using (XmlReader reader = XmlReader.Create(e.MessageString))
+                {
+                    unePartie = (Partie)xmlSerializer.Deserialize(reader);
+                }
+
+                foreach (var joueur in unePartie.Liste_Joueur)
+                {
+                    Console.WriteLine(joueur.Pseudo);
+                }
+                
             });
         }
     }

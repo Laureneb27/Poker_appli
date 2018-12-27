@@ -76,7 +76,7 @@ namespace Poker.Model
         public void SetXML()
         {
             String path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//poker.xml";
-            System.Xml.Serialization.XmlSerializer writer = new System.Xml.Serialization.XmlSerializer(typeof(Partie));
+            XmlSerializer writer = new XmlSerializer(typeof(Partie));
             System.IO.FileStream file = System.IO.File.Create(path);
             writer.Serialize(file, this);
             file.Close();
