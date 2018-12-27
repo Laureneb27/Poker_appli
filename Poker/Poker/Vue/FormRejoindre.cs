@@ -1,20 +1,23 @@
-﻿using Poker.Model;
+﻿using Newtonsoft.Json;
+using Poker.Model;
+using SimpleTCP;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
+using System.IO;
+using System.Net;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
+
 
 namespace Poker.Vue
 {
     public partial class FormRejoindre : Form
     {
         string pseudoJoueur;
-
+        SimpleTcpClient client;
         public FormRejoindre()
         {
             InitializeComponent();
@@ -27,14 +30,52 @@ namespace Poker.Vue
 
         private void button_rejoindre_Click(object sender, EventArgs e)
         {
+            client.Connect(txtIp.Text, Convert.ToInt32("8910"));
+            button_rejoindre.Enabled = false;
+
+            client.WriteLineAndGetReply("Coucou je suis la", TimeSpan.FromSeconds(3));
+            Console.WriteLine(textBox_pseudoRejoindre.Text + " c'est connecte");
             pseudoJoueur = textBox_pseudoRejoindre.Text;
             List<Joueur> joueurs = new List<Joueur>();
             joueurs.Add(new Joueur(pseudoJoueur, "", "bigBlind", 0, 0, 0));
+
+            FormPartie fp = new FormPartie();
+            fp.Show();
         }
 
         private void FormRejoindre_Load(object sender, EventArgs e)
         {
+            client = new SimpleTcpClient();
+            client.StringEncoder = Encoding.UTF8;
+            client.DataReceived += DataReceived;
+        }
 
+        private void DataReceived(object sender, SimpleTCP.Message e)
+        {
+            Partie partie = new Partie();
+            txtStatus.Invoke((MethodInvoker)delegate ()
+            {
+                partie = JsonConvert.DeserializeObject<Partie>(e.MessageString);
+                var findPseudo = partie.Liste_Joueur.Find(x => x.Pseudo == pseudoJoueur);
+
+                if (findPseudo!=null)
+                {
+                    AjouteJoueur(partie);
+                }
+            });
+
+            foreach (var joueur in partie.Liste_Joueur)
+            {
+                Console.WriteLine(joueur.Pseudo);
+            }
+        }
+        public void AjouteJoueur(Partie unePartie)
+        {
+            if (unePartie != null)
+            {
+                pseudoJoueur = textBox_pseudoRejoindre.Text;
+                unePartie.Liste_Joueur.Add(new Joueur(pseudoJoueur, "", "bigBlind", unePartie.Argent_depart, 0, 0));
+            }
         }
     }
 }

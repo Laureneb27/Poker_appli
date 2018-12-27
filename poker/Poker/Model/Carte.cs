@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Poker.Model
 {
-    class Carte
+    public class Carte : IComparable
     {
         private int valeur;
         private string couleur;
@@ -18,7 +18,22 @@ namespace Poker.Model
             this.couleur = couleur;
         }
 
+        public Carte()
+        {
+        }
+
         public int Valeur { get => valeur; set => valeur = value; }
         public string Couleur { get => couleur; set => couleur = value; }
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null) return 1;
+
+            Carte otherCard = obj as Carte;
+            if (otherCard != null)
+                return this.valeur.CompareTo(otherCard.valeur);
+            else
+                throw new ArgumentException("L'objet n'est pas une carte");
+        }
     }
 }

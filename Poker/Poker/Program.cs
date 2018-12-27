@@ -36,10 +36,22 @@ namespace Poker
             
             partie.DistribuerFlop();
 
+            //partie.SetXML();
+
+
+            Carte[] cartes = new Carte[7];
+
+            String nom= " ";
+            int valeur = 0;
+            int valeurMain = 0;
+            
+            
+            Combinaison combi = Combinaison.Recuperer(partie, listeJoueur[0]);
+            Console.WriteLine("joueur : "+listeJoueur[0].Pseudo+" | nom : " + combi.Nom + " | valeur : " + combi.Valeur + " | valeur Main : " + combi.ValeurMain);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Vue.FormCreation());
+            Application.Run(new Vue.Menu());
         }        
     }
 }
