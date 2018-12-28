@@ -20,16 +20,20 @@ namespace Poker.Vue
         private void button_creer_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FormCreation fp = new FormCreation();
-            fp.Show();
+            FormCreation formCreation = new FormCreation();
+            formCreation.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FormRejoindre fp = new FormRejoindre();
-            fp.Show();
+            FormRejoindre formRejoindre = new FormRejoindre();
+            formRejoindre.Show();
         }
 
+        private void Menu_Load(object sender, EventArgs e)
+        {
+            Program.formPartie = new FormPartie();
+        }
     }
 }

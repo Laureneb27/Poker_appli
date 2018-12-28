@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace Poker.Model
@@ -36,7 +39,7 @@ namespace Poker.Model
         }
         public Partie()
         {
-            
+
         }
 
         public List<Joueur> Liste_Joueur { get => liste_Joueur; set => liste_Joueur = value; }
@@ -81,6 +84,8 @@ namespace Poker.Model
             paquet_cartes.DistribuerUneCarte();
             Carte carte = paquet_cartes.DistribuerUneCarte();
             tapis[4] = carte;
+
+            //Refresh_view(unePartie);
         }
 
         public void DonnerArgentJoueur(Partie unePartie)
@@ -89,6 +94,7 @@ namespace Poker.Model
             {
                 unePartie.Liste_Joueur[i].Argent = unePartie.Argent_depart;
             }
+            //Refresh_view(unePartie);
         }
 
         public void SetXML()
@@ -100,14 +106,26 @@ namespace Poker.Model
             file.Close();
         }
 
-        public void GetXML() { }
+        public Partie GetXML()
+        {
+            Partie partie = null;
+            String path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//poker.xml";
+            if (File.Exists(path))
+            {
+                XmlSerializer reader = new XmlSerializer(typeof(Partie));
+                StreamReader file = new StreamReader(path);
+                partie = (Partie)reader.Deserialize(file);
+                file.Close();
+            }
+            return partie;
+        }
 
         public void UpdateXML() { }
 
         public Joueur RecupererGagnantPartie(Partie unePartie)
         {
             List<Combinaison> listeCombinaisons = new List<Combinaison>();
-            
+
             for (int i = 0; i < unePartie.Liste_Joueur.Count(); i++)
             {
                 listeCombinaisons.Add(Combinaison.Recuperer(unePartie, unePartie.Liste_Joueur[i]));
@@ -197,7 +215,7 @@ namespace Poker.Model
             }
         }
 
-        public void JoueurSuivant(Joueur unJoueur){ }
+        public void JoueurSuivant(Joueur unJoueur) { }
 
         public void FinPartie(Joueur unJoueurGagnant, Partie unePartie)
         {
@@ -213,5 +231,40 @@ namespace Poker.Model
                 unePartie.Liste_Joueur[i].Main_joueur = new Carte[2];
             }
         }
+
+        public void Refresh_view(Partie unePartie)
+        {
+            int position_label1 = 450;
+            int position_label2 = 60;
+            int i = 0;
+            foreach (Joueur joueur in unePartie.liste_Joueur) // Pour chaque joueur
+            {
+                position_label2 += 200;
+
+                Label label_nom = new Label();
+                label_nom.Text = joueur.Pseudo;
+                label_nom.BackColor = Color.Salmon;
+                label_nom.Top = position_label1;
+                label_nom.Left = position_label2;
+                label_nom.Name = joueur.Pseudo;
+                Program.formPartie.Controls.Add(label_nom);
+                label_nom.BringToFront();
+
+
+                Label label_argent = new Label();
+                label_argent.Text = "" + joueur.Argent;
+                label_argent.BackColor = Color.Salmon;
+                label_argent.Top = position_label1 + 20;
+                label_argent.Left = position_label2;
+                label_argent.Name = joueur.Pseudo;
+                Program.formPartie.Controls.Add(label_argent);
+                label_argent.BringToFront();
+                i++;
+            }
+
+
+        }
     }
 }
+    
+

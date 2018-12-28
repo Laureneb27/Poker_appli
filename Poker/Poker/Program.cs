@@ -1,4 +1,5 @@
 ﻿using Poker.Model;
+using Poker.Vue;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +9,10 @@ namespace Poker
 {
     static class Program
     {
+
+        public static FormPartie formPartie;
+        public static FormCreation formCreation;
+        public static FormRejoindre formRejoindre;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -25,7 +30,7 @@ namespace Poker
 
             Partie partie = new Partie("1", listeJoueur, 500, paquetCartes, 0, tapis, 5, 10);
             partie.DistribuerJoueur();
-            
+
 
             foreach (Joueur joueur in partie.Liste_Joueur)
             {
@@ -33,7 +38,7 @@ namespace Poker
                 Console.WriteLine(joueur.Main_joueur[0].Valeur + " " + joueur.Main_joueur[0].Couleur);
                 Console.WriteLine(joueur.Main_joueur[1].Valeur + " " + joueur.Main_joueur[1].Couleur);
             }
-            
+
             partie.DistribuerFlop();
             partie.DistribuerRiver();
             partie.DistribuerTapis();
@@ -57,16 +62,9 @@ namespace Poker
 
             //partie.SetXML();
 
-
-            Carte[] cartes = new Carte[7];
-
-            String nom= " ";
-            int valeur = 0;
-            int valeurMain = 0;
-            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormPartie());
-        }        
+            Application.Run(new Vue.Menu());
+        } 
     }
 }

@@ -34,13 +34,8 @@ namespace Poker.Vue
             button_rejoindre.Enabled = false;
 
             client.WriteLineAndGetReply("Coucou je suis la", TimeSpan.FromSeconds(3));
-            Console.WriteLine(textBox_pseudoRejoindre.Text + " c'est connecte");
-            pseudoJoueur = textBox_pseudoRejoindre.Text;
-            List<Joueur> joueurs = new List<Joueur>();
-            joueurs.Add(new Joueur(pseudoJoueur, "", "bigBlind", 0, 0, 0));
+            Program.formPartie.Show();
 
-            FormPartie fp = new FormPartie();
-            fp.Show();
         }
 
         private void FormRejoindre_Load(object sender, EventArgs e)
@@ -53,29 +48,36 @@ namespace Poker.Vue
         private void DataReceived(object sender, SimpleTCP.Message e)
         {
             Partie partie = new Partie();
-            txtStatus.Invoke((MethodInvoker)delegate ()
-            {
+            //txtStatus.Invoke((MethodInvoker)delegate ()
+            //{
                 partie = JsonConvert.DeserializeObject<Partie>(e.MessageString);
                 var findPseudo = partie.Liste_Joueur.Find(x => x.Pseudo == pseudoJoueur);
 
-                if (findPseudo!=null)
+                if (findPseudo==null)
                 {
-                    AjouteJoueur(partie);
+                    pseudoJoueur = textBox_pseudoRejoindre.Text;
+                    Joueur joueur = new Joueur();
+                    partie = joueur.AjouteJoueur(partie, pseudoJoueur);
+                    SendData(partie);
                 }
-            });
+                else
+                {
+                    partie.Refresh_view(partie);
+                }
+            //});
 
             foreach (var joueur in partie.Liste_Joueur)
             {
                 Console.WriteLine(joueur.Pseudo);
             }
         }
-        public void AjouteJoueur(Partie unePartie)
+        
+
+        public void SendData(Partie unePartie)//To the server
         {
-            if (unePartie != null)
-            {
-                pseudoJoueur = textBox_pseudoRejoindre.Text;
-                unePartie.Liste_Joueur.Add(new Joueur(pseudoJoueur, "", "bigBlind", unePartie.Argent_depart, 0, 0));
-            }
+            var partieDataString = JsonConvert.SerializeObject(unePartie);
+            client.Write(partieDataString);
+            Console.WriteLine(partieDataString);
         }
     }
 }

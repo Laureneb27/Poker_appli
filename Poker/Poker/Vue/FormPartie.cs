@@ -34,5 +34,16 @@ namespace Poker
         {
             
         }
+
+        private void btn_refresh_Click(object sender, EventArgs e)
+        {
+            Label label_nom = new Label();
+            label_nom.Text = "iiii";
+            label_nom.BackColor = Color.Yellow;
+            label_nom.Top = 50;
+            label_nom.Left = 200;
+            Controls.Add(label_nom);
+            label_nom.BringToFront();
+        }
     }
 }
