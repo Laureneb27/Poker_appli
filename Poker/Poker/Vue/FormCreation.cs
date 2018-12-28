@@ -22,6 +22,7 @@ namespace Poker.Vue
         int argentPartie;
         SimpleTcpServer server;
         Partie unePartie;
+
         public FormCreation()
         {
             InitializeComponent();

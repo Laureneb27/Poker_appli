@@ -35,6 +35,25 @@ namespace Poker
             }
             
             partie.DistribuerFlop();
+            partie.DistribuerRiver();
+            partie.DistribuerTapis();
+
+            Console.WriteLine("Tapis");
+            
+            for (int i = 0; i < partie.Tapis.Length; i++)
+            {
+                Console.WriteLine(partie.Tapis[i].Valeur + " " + partie.Tapis[i].Couleur);
+            }
+
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+
+            Joueur unGagnant = partie.RecupererGagnantPartie(partie);
+            Console.WriteLine(unGagnant.Pseudo);
+            Combinaison combiGagnant = Combinaison.Recuperer(partie, unGagnant);
+            Console.WriteLine(combiGagnant.Nom);
+            Console.WriteLine("De valeur : "+combiGagnant.ValeurMain);
+
 
             //partie.SetXML();
 
@@ -45,13 +64,9 @@ namespace Poker
             int valeur = 0;
             int valeurMain = 0;
             
-            
-            Combinaison combi = Combinaison.Recuperer(partie, listeJoueur[0]);
-            Console.WriteLine("joueur : "+listeJoueur[0].Pseudo+" | nom : " + combi.Nom + " | valeur : " + combi.Valeur + " | valeur Main : " + combi.ValeurMain);
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Vue.Menu());
+            Application.Run(new FormPartie());
         }        
     }
 }
