@@ -114,7 +114,7 @@
             // 
             this.label_pseudo.AutoSize = true;
             this.label_pseudo.BackColor = System.Drawing.Color.Salmon;
-            this.label_pseudo.Location = new System.Drawing.Point(189, 612);
+            this.label_pseudo.Location = new System.Drawing.Point(180, 618);
             this.label_pseudo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_pseudo.Name = "label_pseudo";
             this.label_pseudo.Size = new System.Drawing.Size(56, 17);
@@ -125,7 +125,7 @@
             // 
             this.label_argent.AutoSize = true;
             this.label_argent.BackColor = System.Drawing.Color.Salmon;
-            this.label_argent.Location = new System.Drawing.Point(196, 640);
+            this.label_argent.Location = new System.Drawing.Point(156, 223);
             this.label_argent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_argent.Name = "label_argent";
             this.label_argent.Size = new System.Drawing.Size(50, 17);

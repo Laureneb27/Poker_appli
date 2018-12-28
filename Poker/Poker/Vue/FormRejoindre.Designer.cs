@@ -144,10 +144,10 @@
             // 
             // txtStatus
             // 
-            this.txtStatus.Location = new System.Drawing.Point(451, 111);
+            this.txtStatus.Location = new System.Drawing.Point(568, 89);
             this.txtStatus.Multiline = true;
             this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(292, 232);
+            this.txtStatus.Size = new System.Drawing.Size(132, 232);
             this.txtStatus.TabIndex = 19;
             // 
             // FormRejoindre
@@ -155,7 +155,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(830, 470);
+            this.ClientSize = new System.Drawing.Size(487, 367);
             this.Controls.Add(this.txtStatus);
             this.Controls.Add(this.txtIp);
             this.Controls.Add(this.pictureBox2);

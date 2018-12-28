@@ -65,6 +65,10 @@ namespace Poker.Vue
                     partie = joueur.AjouteJoueur(partie, pseudoJoueur);
                     SendData(partie);
                 }
+                else
+                {
+                    partie.Refresh_view(partie);
+                }
             });
 
             foreach (var joueur in partie.Liste_Joueur)

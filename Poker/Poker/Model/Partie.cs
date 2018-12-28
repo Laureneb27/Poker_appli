@@ -233,61 +233,36 @@ namespace Poker.Model
 
         public void Refresh_view(Partie unePartie)
         {
-            
-            int position_label1 = 300;
+            int position_label1 = 450;
             int position_label2 = 60;
-            int i = 0;
             foreach (Joueur joueur in unePartie.liste_Joueur) // Pour chaque joueur
             {
-                if (i == 0)
-                {
-                    Label label_nom = new Label();
-                    label_nom.Text = joueur.Pseudo;
-                    label_nom.BackColor = Color.Yellow;
-                    label_nom.Top = position_label1;
-                    label_nom.Left = 200;
-                    label_nom.Name = joueur.Pseudo;
-                    Program.formPartie.Controls.Add(label_nom);
-                    label_nom.BringToFront();
-
-                    Label label_argent = new Label();
-                    label_argent.Text = "" + joueur.Argent;
-                    label_argent.BackColor = Color.Yellow;
-                    label_argent.Top = position_label1 + 20;
-                    label_argent.Left = 200;
-                    label_argent.Name = joueur.Pseudo;
-                    Program.formPartie.Controls.Add(label_argent);
-                    label_argent.BringToFront();
-                    i ++;
-                }
-                else
-                {
-                    Label label_nom = new Label();
-                    label_nom.Text = joueur.Pseudo;
-                    label_nom.BackColor = Color.Yellow;
-                    label_nom.Top = position_label1;
-                    label_nom.Left = 500;
-                    label_nom.Name = joueur.Pseudo;
-                    Program.formPartie.Controls.Add(label_nom);
-                    label_nom.BringToFront();
-
-                    Label label_argent = new Label();
-                    label_argent.Text = "" + joueur.Argent;
-                    label_argent.BackColor = Color.Yellow;
-                    label_argent.Top = position_label1 + 20;
-                    label_argent.Left = 500;
-                    label_argent.Name = joueur.Pseudo;
-                    Program.formPartie.Controls.Add(label_argent);
-                    label_argent.BringToFront();
-                }
-                
+                position_label2 += 200;
+                Label label_nom = new Label();
+                label_nom.Text = joueur.Pseudo;
+                label_nom.BackColor = Color.Salmon;
+                label_nom.Top = position_label1;
+                label_nom.Left = position_label2;
+                label_nom.Name = joueur.Pseudo;
+                Program.formPartie.Controls.Add(label_nom);
+                label_nom.BringToFront();
 
 
-                //for (int i = 0; i < 2; i++) // Pour chacune des cartes d'un joueur
+                Label label_argent = new Label();
+                label_argent.Text = "" + joueur.Argent;
+                label_argent.BackColor = Color.Salmon;
+                label_argent.Top = position_label1 + 20;
+                label_argent.Left = position_label2;
+                label_argent.Name = joueur.Pseudo;
+                Program.formPartie.Controls.Add(label_argent);
+                label_argent.BringToFront();
+
+
+                //foreach(Carte carte in joueur.Main_joueur) // Pour chacune des cartes d'un joueur
                 //{
                 //    Label label_carte = new Label();
                 //    String couleur = "";
-                //    switch (joueur.Main_joueur[i].Couleur)
+                //    switch (carte.Couleur)
                 //    {
                 //        case "Pique":
                 //            couleur = "♠";
