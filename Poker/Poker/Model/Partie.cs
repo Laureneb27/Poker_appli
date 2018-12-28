@@ -236,6 +236,7 @@ namespace Poker.Model
         {
             int position_label1 = 450;
             int position_label2 = 60;
+            int i = 0;
             foreach (Joueur joueur in unePartie.liste_Joueur) // Pour chaque joueur
             {
                 position_label2 += 200;
@@ -258,83 +259,12 @@ namespace Poker.Model
                 label_argent.Name = joueur.Pseudo;
                 Program.formPartie.Controls.Add(label_argent);
                 label_argent.BringToFront();
-
-
-                //if (joueur.Main_joueur[1] != null)
-                //{
-                //    int i = 0;
-                //    foreach (Carte carte in joueur.Main_joueur) // Pour chacune des cartes d'un joueur
-                //    {
-
-                //        Label label_carte = new Label();
-                //        String couleur = "";
-                //        switch (carte.Couleur)
-                //        {
-                //            case "Pique":
-                //                couleur = "♠";
-                //                label_carte.ForeColor = Color.Black;
-                //                break;
-                //            case "Coeur":
-                //                couleur = "♥";
-                //                label_carte.ForeColor = Color.Red;
-                //                break;
-                //            case "Trefle":
-                //                couleur = "♣";
-                //                label_carte.ForeColor = Color.Black;
-                //                break;
-                //            case "Carreau":
-                //                couleur = "♦";
-                //                label_carte.ForeColor = Color.Red;
-                //                break;
-
-                //            default:
-                //                break;
-                //        }
-
-                //        label_carte.Name = joueur.Pseudo + "_" + i;
-                //        label_carte.Text = joueur.Main_joueur[i].Valeur.ToString() + " " + couleur;
-                //        label_carte.Top = position_label1 - 50;
-                //        label_carte.Left = position_label2;
-                //        if (i == 1) label_carte.Left = position_label2 + 5;
-                //        label_carte.Size = new Size(35, 40);
-                //        label_carte.BackColor = Color.White;
-                //        Program.formPartie.Controls.Add(label_carte);
-
-                //        PictureBox pb = new PictureBox();
-                //        pb.Name = "carte" + i + "_joueur" + joueur.Pseudo;
-                //        pb.Top = position_label1 - 50;
-                //        if (i == 1) pb.Left = position_label2;
-
-                //        pb.Size = new Size(55, 60);
-                //        pb.Image = Properties.Resources.Carte_vide3;
-                //        Program.formPartie.Controls.Add(pb);
-
-                //        i++;
-                //    }
-
-
-
-                    //    //label_carte.Name = joueur.Pseudo + "_" + i;
-                    //    //label_carte.Text = joueur.Main_joueur[i].Valeur.ToString() + " " + couleur;
-                    //    //label_carte.Top = position_carte1 + 5;
-                    //    //label_carte.Left = 5;
-                    //    //if (i == 1) label_carte.Left = position_carte2 + 5;
-                    //    //label_carte.Size = new Size(35, 40);
-                    //    //label_carte.BackColor = Color.White;
-                    //    //formPartie.Controls.Add(label_carte);
-
-                    //    //PictureBox pb = new PictureBox();
-                    //    //pb.Name = "carte" + i + "_joueur" + joueur.Pseudo;
-                    //    //pb.Top = position_carte1;
-                    //    //if (i == 1) pb.Left = position_carte2;
-
-                    //    //pb.Size = new Size(55, 60);
-                    //    //pb.Image = Properties.Resources.Carte_vide3;
-                    //    //formPartie.Controls.Add(pb);
-                    //}
-
-                }
+                i++;
             }
+
+
         }
     }
 }
+    
+
