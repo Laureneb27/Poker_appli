@@ -238,13 +238,25 @@ namespace Poker.Model
             int position_carte2 = 60;
             foreach (Joueur joueur in unePartie.liste_Joueur) // Pour chaque joueur
             {
-                position_carte1 += 100;
+
+                //Label label_nom = new Label();
+                //label_nom.Text = joueur.Pseudo;
+                //label_nom.Name = joueur.Pseudo;
+                //label_nom.BackColor = Color.Yellow;
+                //label_nom.Top = 50;
+                //label_nom.Left = 200;
+                //formPartie.Controls.Add(label_nom);
+
+                //Console.WriteLine("Hello");
+
+
                 Label label_nom = new Label();
-                label_nom.Text = joueur.Pseudo;
-                label_nom.Name = joueur.Pseudo;
+                label_nom.Text = "iiii";
                 label_nom.BackColor = Color.Yellow;
-                label_nom.Top = position_carte1 - 30;
+                label_nom.Top = 50;
+                label_nom.Left = 200;
                 formPartie.Controls.Add(label_nom);
+                label_nom.BringToFront();
 
 
                 //for (int i = 0; i < 2; i++) // Pour chacune des cartes d'un joueur
