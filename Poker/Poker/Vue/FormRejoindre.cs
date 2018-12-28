@@ -39,8 +39,11 @@ namespace Poker.Vue
             //List<Joueur> joueurs = new List<Joueur>();
             //joueurs.Add(new Joueur(pseudoJoueur, "", "bigBlind", 0, 0, 0));
 
-            FormPartie fp = new FormPartie();
-            fp.Show();
+            
+
+            Program.formPartie = new FormPartie();
+            Program.formPartie.Show();
+
         }
 
         private void FormRejoindre_Load(object sender, EventArgs e)
@@ -53,8 +56,8 @@ namespace Poker.Vue
         private void DataReceived(object sender, SimpleTCP.Message e)
         {
             Partie partie = new Partie();
-            txtStatus.Invoke((MethodInvoker)delegate ()
-            {
+            //txtStatus.Invoke((MethodInvoker)delegate ()
+            //{
                 partie = JsonConvert.DeserializeObject<Partie>(e.MessageString);
                 var findPseudo = partie.Liste_Joueur.Find(x => x.Pseudo == pseudoJoueur);
 
@@ -69,7 +72,7 @@ namespace Poker.Vue
                 {
                     partie.Refresh_view(partie);
                 }
-            });
+            //});
 
             foreach (var joueur in partie.Liste_Joueur)
             {
