@@ -391,7 +391,7 @@ namespace Poker.Model
         {
             if (obj == null) return 1;
 
-            Carte otherCombinaison = obj as Carte;
+            Combinaison otherCombinaison = obj as Combinaison;
             if (otherCombinaison != null)
                 return this.valeur.CompareTo(otherCombinaison.Valeur);
             else
