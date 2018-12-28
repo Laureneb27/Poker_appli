@@ -93,7 +93,7 @@ namespace Poker.Vue
             System.Net.IPAddress ip = System.Net.IPAddress.Parse(txtIp.Text);
             server.Start(ip, Convert.ToInt32("8910"));
 
-            unePartie.GetXML();
+            //unePartie.GetXML();
 
             
 
