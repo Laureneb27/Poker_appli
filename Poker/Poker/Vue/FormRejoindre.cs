@@ -41,7 +41,7 @@ namespace Poker.Vue
 
             
 
-            Program.formPartie = new FormPartie();
+            //Program.formPartie = new FormPartie();
             Program.formPartie.Show();
 
         }
