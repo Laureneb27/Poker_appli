@@ -45,6 +45,16 @@ namespace Poker
                 Console.WriteLine(partie.Tapis[i].Valeur + " " + partie.Tapis[i].Couleur);
             }
 
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+
+            Joueur unGagnant = partie.RecupererGagnantPartie(partie);
+            Console.WriteLine(unGagnant.Pseudo);
+            Combinaison combiGagnant = Combinaison.Recuperer(partie, unGagnant);
+            Console.WriteLine(combiGagnant.Nom);
+            Console.WriteLine("De valeur : "+combiGagnant.ValeurMain);
+
+
             //partie.SetXML();
 
 
