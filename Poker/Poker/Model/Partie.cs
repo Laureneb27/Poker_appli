@@ -79,13 +79,13 @@ namespace Poker.Model
             tapis[3] = carte;
         }
 
-        public void DistribuerTapis(Partie unePartie)
+        public void DistribuerTapis()
         {
             paquet_cartes.DistribuerUneCarte();
             Carte carte = paquet_cartes.DistribuerUneCarte();
             tapis[4] = carte;
 
-            Refresh_view(unePartie);
+            //Refresh_view(unePartie);
         }
 
         public void DonnerArgentJoueur(Partie unePartie)
@@ -94,7 +94,7 @@ namespace Poker.Model
             {
                 unePartie.Liste_Joueur[i].Argent = unePartie.Argent_depart;
             }
-            Refresh_view(unePartie);
+            //Refresh_view(unePartie);
         }
 
         public void SetXML()
