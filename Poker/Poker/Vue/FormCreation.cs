@@ -23,6 +23,7 @@ namespace Poker.Vue
         SimpleTcpServer server;
         Partie unePartie;
 
+
         public Partie UnePartie { get => unePartie; set => unePartie = value; }
 
         public FormCreation()
