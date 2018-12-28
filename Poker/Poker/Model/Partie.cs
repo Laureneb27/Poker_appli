@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace Poker.Model
@@ -36,7 +39,7 @@ namespace Poker.Model
         }
         public Partie()
         {
-            
+
         }
 
         public List<Joueur> Liste_Joueur { get => liste_Joueur; set => liste_Joueur = value; }
@@ -76,11 +79,13 @@ namespace Poker.Model
             tapis[3] = carte;
         }
 
-        public void DistribuerTapis()
+        public void DistribuerTapis(Partie unePartie)
         {
             paquet_cartes.DistribuerUneCarte();
             Carte carte = paquet_cartes.DistribuerUneCarte();
             tapis[4] = carte;
+
+            Refresh_view(unePartie);
         }
 
         public void DonnerArgentJoueur(Partie unePartie)
@@ -100,14 +105,26 @@ namespace Poker.Model
             file.Close();
         }
 
-        public void GetXML() { }
+        public Partie GetXML()
+        {
+            Partie partie = null;
+            String path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//poker.xml";
+            if (File.Exists(path))
+            {
+                System.Xml.Serialization.XmlSerializer reader = new System.Xml.Serialization.XmlSerializer(typeof(Partie));
+                System.IO.StreamReader file = new System.IO.StreamReader(path);
+                partie = (Partie)reader.Deserialize(file);
+                file.Close();
+            }
+            return partie;
+        }
 
         public void UpdateXML() { }
 
         public Joueur RecupererGagnantPartie(Partie unePartie)
         {
             List<Combinaison> listeCombinaisons = new List<Combinaison>();
-            
+
             for (int i = 0; i < unePartie.Liste_Joueur.Count(); i++)
             {
                 listeCombinaisons.Add(Combinaison.Recuperer(unePartie, unePartie.Liste_Joueur[i]));
@@ -197,7 +214,7 @@ namespace Poker.Model
             }
         }
 
-        public void JoueurSuivant(Joueur unJoueur){ }
+        public void JoueurSuivant(Joueur unJoueur) { }
 
         public void FinPartie(Joueur unJoueurGagnant, Partie unePartie)
         {
@@ -211,6 +228,70 @@ namespace Poker.Model
                 unePartie.Liste_Joueur[i].Statut = "attente";
                 unePartie.Liste_Joueur[i].Role = " ";
                 unePartie.Liste_Joueur[i].Main_joueur = new Carte[2];
+            }
+        }
+
+        public void Refresh_view(Partie unePartie)
+        {
+            FormPartie formPartie = new FormPartie();
+            int position_carte1 = 10;
+            int position_carte2 = 60;
+            foreach (Joueur joueur in unePartie.liste_Joueur) // Pour chaque joueur
+            {
+
+                position_carte1 += 100;
+                Label label_nom = new Label();
+                label_nom.Text = joueur.Pseudo;
+                label_nom.Top = position_carte1 - 30;
+                formPartie.Controls.Add(label_nom);
+
+
+                for (int i = 0; i < 2; i++) // Pour chacune des cartes d'un joueur
+                {
+                    Label label_carte = new Label();
+                    String couleur = "";
+                    switch (joueur.Main_joueur[i].Couleur)
+                    {
+                        case "Pique":
+                            couleur = "♠";
+                            label_carte.ForeColor = Color.Black;
+                            break;
+                        case "Coeur":
+                            couleur = "♥";
+                            label_carte.ForeColor = Color.Red;
+                            break;
+                        case "Trefle":
+                            couleur = "♣";
+                            label_carte.ForeColor = Color.Black;
+                            break;
+                        case "Carreau":
+                            couleur = "♦";
+                            label_carte.ForeColor = Color.Red;
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    label_carte.Name = joueur.Pseudo + "_" + i;
+                    label_carte.Text = joueur.Main_joueur[i].Valeur.ToString() + " " + couleur;
+                    label_carte.Top = position_carte1 + 5;
+                    label_carte.Left = 5;
+                    if (i == 1) label_carte.Left = position_carte2 + 5;
+                    label_carte.Size = new Size(35, 40);
+                    label_carte.BackColor = Color.White;
+                    formPartie.Controls.Add(label_carte);
+
+                    PictureBox pb = new PictureBox();
+                    pb.Name = "carte" + i + "_joueur" + joueur.Pseudo;
+                    pb.Top = position_carte1;
+                    if (i == 1) pb.Left = position_carte2;
+
+                    pb.Size = new Size(55, 60);
+                    pb.Image = Properties.Resources.Carte_vide3;
+                    formPartie.Controls.Add(pb);
+                }
+
             }
         }
     }

@@ -46,8 +46,8 @@ namespace Poker
             int valeurMain = 0;
             
             
-            Combinaison combi = Combinaison.Recuperer(partie, listeJoueur[0]);
-            Console.WriteLine("joueur : "+listeJoueur[0].Pseudo+" | nom : " + combi.Nom + " | valeur : " + combi.Valeur + " | valeur Main : " + combi.ValeurMain);
+            //Combinaison combi = Combinaison.Recuperer(partie, listeJoueur[0]);
+            //Console.WriteLine("joueur : "+listeJoueur[0].Pseudo+" | nom : " + combi.Nom + " | valeur : " + combi.Valeur + " | valeur Main : " + combi.ValeurMain);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

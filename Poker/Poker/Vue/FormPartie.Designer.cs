@@ -60,7 +60,7 @@
             this.table.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("table.BackgroundImage")));
             this.table.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.table.Location = new System.Drawing.Point(-85, -126);
-            this.table.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.table.Margin = new System.Windows.Forms.Padding(4);
             this.table.Name = "table";
             this.table.Size = new System.Drawing.Size(1821, 945);
             this.table.TabIndex = 7;
@@ -69,7 +69,7 @@
             // button_seCoucher
             // 
             this.button_seCoucher.Location = new System.Drawing.Point(785, 665);
-            this.button_seCoucher.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_seCoucher.Margin = new System.Windows.Forms.Padding(4);
             this.button_seCoucher.Name = "button_seCoucher";
             this.button_seCoucher.Size = new System.Drawing.Size(100, 28);
             this.button_seCoucher.TabIndex = 8;
@@ -79,7 +79,7 @@
             // button_miser
             // 
             this.button_miser.Location = new System.Drawing.Point(1412, 665);
-            this.button_miser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_miser.Margin = new System.Windows.Forms.Padding(4);
             this.button_miser.Name = "button_miser";
             this.button_miser.Size = new System.Drawing.Size(100, 28);
             this.button_miser.TabIndex = 9;
@@ -90,7 +90,7 @@
             // button_check
             // 
             this.button_check.Location = new System.Drawing.Point(1061, 665);
-            this.button_check.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_check.Margin = new System.Windows.Forms.Padding(4);
             this.button_check.Name = "button_check";
             this.button_check.Size = new System.Drawing.Size(100, 28);
             this.button_check.TabIndex = 10;
@@ -100,7 +100,7 @@
             // button_suivre
             // 
             this.button_suivre.Location = new System.Drawing.Point(911, 665);
-            this.button_suivre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_suivre.Margin = new System.Windows.Forms.Padding(4);
             this.button_suivre.Name = "button_suivre";
             this.button_suivre.Size = new System.Drawing.Size(100, 28);
             this.button_suivre.TabIndex = 11;
@@ -111,7 +111,7 @@
             // numericUpDown_mise
             // 
             this.numericUpDown_mise.Location = new System.Drawing.Point(1216, 668);
-            this.numericUpDown_mise.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown_mise.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown_mise.Maximum = new decimal(new int[] {
             1410065408,
             2,
@@ -148,7 +148,7 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(1361, 54);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(115, 146);
             this.pictureBox1.TabIndex = 15;
@@ -158,7 +158,7 @@
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(1404, 54);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(115, 146);
             this.pictureBox2.TabIndex = 16;
@@ -168,7 +168,7 @@
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(544, 255);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(115, 146);
             this.pictureBox3.TabIndex = 17;
@@ -178,7 +178,7 @@
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
             this.pictureBox4.Location = new System.Drawing.Point(665, 255);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(115, 146);
             this.pictureBox4.TabIndex = 18;
@@ -188,7 +188,7 @@
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
             this.pictureBox5.Location = new System.Drawing.Point(787, 255);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(115, 146);
             this.pictureBox5.TabIndex = 19;
@@ -224,7 +224,6 @@
             this.btn_refresh.TabIndex = 22;
             this.btn_refresh.Text = "Refresh";
             this.btn_refresh.UseVisualStyleBackColor = true;
-            
             // 
             // FormPartie
             // 

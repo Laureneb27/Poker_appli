@@ -30,6 +30,13 @@ namespace Poker.Vue
 
         private void FormCreation_Load(object sender, EventArgs e)
         {
+            Partie xmlPartie = unePartie.GetXML();
+
+            if (xmlPartie != null)
+            {
+                numericUpDown_argent.Value = xmlPartie.Argent_depart;
+            }
+
             server = new SimpleTcpServer();
             server.Delimiter = 0x13;
             server.StringEncoder = Encoding.UTF8;
