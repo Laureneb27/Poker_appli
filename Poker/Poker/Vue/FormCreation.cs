@@ -64,6 +64,7 @@ namespace Poker.Vue
                     {
                         Console.WriteLine(unJoueur.Pseudo);
                     }
+                    unePartie.Refresh_view(unePartie);
                 }
                 catch (Exception exp)
                 {
