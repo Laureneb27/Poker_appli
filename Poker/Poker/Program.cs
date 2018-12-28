@@ -35,6 +35,15 @@ namespace Poker
             }
             
             partie.DistribuerFlop();
+            partie.DistribuerRiver();
+            partie.DistribuerTapis();
+
+            Console.WriteLine("Tapis");
+            
+            for (int i = 0; i < partie.Tapis.Length; i++)
+            {
+                Console.WriteLine(partie.Tapis[i].Valeur + " " + partie.Tapis[i].Couleur);
+            }
 
             //partie.SetXML();
 
