@@ -94,6 +94,7 @@ namespace Poker.Model
             {
                 unePartie.Liste_Joueur[i].Argent = unePartie.Argent_depart;
             }
+            Refresh_view(unePartie);
         }
 
         public void SetXML()
@@ -111,8 +112,8 @@ namespace Poker.Model
             String path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//poker.xml";
             if (File.Exists(path))
             {
-                System.Xml.Serialization.XmlSerializer reader = new System.Xml.Serialization.XmlSerializer(typeof(Partie));
-                System.IO.StreamReader file = new System.IO.StreamReader(path);
+                XmlSerializer reader = new XmlSerializer(typeof(Partie));
+                StreamReader file = new StreamReader(path);
                 partie = (Partie)reader.Deserialize(file);
                 file.Close();
             }
@@ -238,6 +239,7 @@ namespace Poker.Model
             foreach (Joueur joueur in unePartie.liste_Joueur) // Pour chaque joueur
             {
                 position_label2 += 200;
+
                 Label label_nom = new Label();
                 label_nom.Text = joueur.Pseudo;
                 label_nom.BackColor = Color.Salmon;
@@ -258,52 +260,80 @@ namespace Poker.Model
                 label_argent.BringToFront();
 
 
-                //foreach(Carte carte in joueur.Main_joueur) // Pour chacune des cartes d'un joueur
-                //{
-                //    Label label_carte = new Label();
-                //    String couleur = "";
-                //    switch (carte.Couleur)
-                //    {
-                //        case "Pique":
-                //            couleur = "♠";
-                //            label_carte.ForeColor = Color.Black;
-                //            break;
-                //        case "Coeur":
-                //            couleur = "♥";
-                //            label_carte.ForeColor = Color.Red;
-                //            break;
-                //        case "Trefle":
-                //            couleur = "♣";
-                //            label_carte.ForeColor = Color.Black;
-                //            break;
-                //        case "Carreau":
-                //            couleur = "♦";
-                //            label_carte.ForeColor = Color.Red;
-                //            break;
+                if (joueur.Main_joueur[1] != null)
+                {
+                    int i = 0;
+                    foreach (Carte carte in joueur.Main_joueur) // Pour chacune des cartes d'un joueur
+                    {
 
-                //        default:
-                //            break;
-                //    }
+                        Label label_carte = new Label();
+                        String couleur = "";
+                        switch (carte.Couleur)
+                        {
+                            case "Pique":
+                                couleur = "♠";
+                                label_carte.ForeColor = Color.Black;
+                                break;
+                            case "Coeur":
+                                couleur = "♥";
+                                label_carte.ForeColor = Color.Red;
+                                break;
+                            case "Trefle":
+                                couleur = "♣";
+                                label_carte.ForeColor = Color.Black;
+                                break;
+                            case "Carreau":
+                                couleur = "♦";
+                                label_carte.ForeColor = Color.Red;
+                                break;
 
-                //    //label_carte.Name = joueur.Pseudo + "_" + i;
-                //    //label_carte.Text = joueur.Main_joueur[i].Valeur.ToString() + " " + couleur;
-                //    //label_carte.Top = position_carte1 + 5;
-                //    //label_carte.Left = 5;
-                //    //if (i == 1) label_carte.Left = position_carte2 + 5;
-                //    //label_carte.Size = new Size(35, 40);
-                //    //label_carte.BackColor = Color.White;
-                //    //formPartie.Controls.Add(label_carte);
+                            default:
+                                break;
+                        }
 
-                //    //PictureBox pb = new PictureBox();
-                //    //pb.Name = "carte" + i + "_joueur" + joueur.Pseudo;
-                //    //pb.Top = position_carte1;
-                //    //if (i == 1) pb.Left = position_carte2;
+                        label_carte.Name = joueur.Pseudo + "_" + i;
+                        label_carte.Text = joueur.Main_joueur[i].Valeur.ToString() + " " + couleur;
+                        label_carte.Top = position_label1 -50;
+                        label_carte.Left = position_label2;
+                        if (i == 1) label_carte.Left = position_label2 + 5;
+                        label_carte.Size = new Size(35, 40);
+                        label_carte.BackColor = Color.White;
+                        Program.formPartie.Controls.Add(label_carte);
 
-                //    //pb.Size = new Size(55, 60);
-                //    //pb.Image = Properties.Resources.Carte_vide3;
-                //    //formPartie.Controls.Add(pb);
-                //}
+                        PictureBox pb = new PictureBox();
+                        pb.Name = "carte" + i + "_joueur" + joueur.Pseudo;
+                        pb.Top = position_label1 - 50;
+                        if (i == 1) pb.Left = position_label2;
 
+                        pb.Size = new Size(55, 60);
+                        pb.Image = Properties.Resources.Carte_vide3;
+                        Program.formPartie.Controls.Add(pb);
+
+                        i++;
+                    }
+
+
+
+                    //    //label_carte.Name = joueur.Pseudo + "_" + i;
+                    //    //label_carte.Text = joueur.Main_joueur[i].Valeur.ToString() + " " + couleur;
+                    //    //label_carte.Top = position_carte1 + 5;
+                    //    //label_carte.Left = 5;
+                    //    //if (i == 1) label_carte.Left = position_carte2 + 5;
+                    //    //label_carte.Size = new Size(35, 40);
+                    //    //label_carte.BackColor = Color.White;
+                    //    //formPartie.Controls.Add(label_carte);
+
+                    //    //PictureBox pb = new PictureBox();
+                    //    //pb.Name = "carte" + i + "_joueur" + joueur.Pseudo;
+                    //    //pb.Top = position_carte1;
+                    //    //if (i == 1) pb.Left = position_carte2;
+
+                    //    //pb.Size = new Size(55, 60);
+                    //    //pb.Image = Properties.Resources.Carte_vide3;
+                    //    //formPartie.Controls.Add(pb);
+                    //}
+
+                }
             }
         }
     }

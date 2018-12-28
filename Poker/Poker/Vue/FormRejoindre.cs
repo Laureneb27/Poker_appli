@@ -34,14 +34,6 @@ namespace Poker.Vue
             button_rejoindre.Enabled = false;
 
             client.WriteLineAndGetReply("Coucou je suis la", TimeSpan.FromSeconds(3));
-            Console.WriteLine(textBox_pseudoRejoindre.Text + " c'est connecte");
-            //pseudoJoueur = textBox_pseudoRejoindre.Text;
-            //List<Joueur> joueurs = new List<Joueur>();
-            //joueurs.Add(new Joueur(pseudoJoueur, "", "bigBlind", 0, 0, 0));
-
-            
-
-            //Program.formPartie = new FormPartie();
             Program.formPartie.Show();
 
         }

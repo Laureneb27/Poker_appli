@@ -22,6 +22,9 @@ namespace Poker.Vue
         int argentPartie;
         SimpleTcpServer server;
         Partie unePartie;
+
+        public Partie UnePartie { get => unePartie; set => unePartie = value; }
+
         public FormCreation()
         {
             InitializeComponent();
@@ -90,6 +93,10 @@ namespace Poker.Vue
             System.Net.IPAddress ip = System.Net.IPAddress.Parse(txtIp.Text);
             server.Start(ip, Convert.ToInt32("8910"));
 
+            unePartie.GetXML();
+
+            
+
             argentPartie = (int)numericUpDown_argent.Value;
             PaquetCartes paquetCartes = new PaquetCartes();
             Carte[] tapis = new Carte[5];
@@ -101,13 +108,9 @@ namespace Poker.Vue
             pseudoJoueur = textBox_pseudo.Text;
             joueur.AjouteJoueur(unePartie, pseudoJoueur);
 
-
-            Console.WriteLine("pseudoJoueur est " + pseudoJoueur);
-            Console.WriteLine("numeriupdown est " + argentPartie);
-            //this.Hide();
-            //Program.formPartie = new FormPartie();
             Program.formPartie.Show();
         }
+
 
         private void button_fermer_Click(object sender, EventArgs e)
         {

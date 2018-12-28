@@ -34,7 +34,6 @@ namespace Poker.Vue
         private void Menu_Load(object sender, EventArgs e)
         {
             Program.formPartie = new FormPartie();
-            //Program.formPartie.Show();
         }
     }
 }
