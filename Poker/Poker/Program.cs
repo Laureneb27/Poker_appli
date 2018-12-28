@@ -8,6 +8,8 @@ namespace Poker
 {
     static class Program
     {
+
+        public static FormPartie formPartie;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

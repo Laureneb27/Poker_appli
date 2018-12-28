@@ -105,8 +105,8 @@ namespace Poker.Vue
             Console.WriteLine("pseudoJoueur est " + pseudoJoueur);
             Console.WriteLine("numeriupdown est " + argentPartie);
             //this.Hide();
-            FormPartie fp = new FormPartie();
-            fp.Show();
+            Program.formPartie = new FormPartie();
+            Program.formPartie.Show();
         }
 
         private void button_fermer_Click(object sender, EventArgs e)
