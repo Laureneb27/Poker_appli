@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPartie));
-            this.table = new System.Windows.Forms.PictureBox();
             this.button_seCoucher = new System.Windows.Forms.Button();
             this.button_miser = new System.Windows.Forms.Button();
             this.button_check = new System.Windows.Forms.Button();
@@ -45,7 +44,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_refresh = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_mise)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -53,18 +51,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
-            // 
-            // table
-            // 
-            this.table.BackColor = System.Drawing.Color.Transparent;
-            this.table.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("table.BackgroundImage")));
-            this.table.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.table.Location = new System.Drawing.Point(-85, -126);
-            this.table.Margin = new System.Windows.Forms.Padding(4);
-            this.table.Name = "table";
-            this.table.Size = new System.Drawing.Size(1821, 945);
-            this.table.TabIndex = 7;
-            this.table.TabStop = false;
             // 
             // button_seCoucher
             // 
@@ -224,6 +210,7 @@
             this.btn_refresh.TabIndex = 22;
             this.btn_refresh.Text = "Refresh";
             this.btn_refresh.UseVisualStyleBackColor = true;
+            this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
             // 
             // FormPartie
             // 
@@ -245,11 +232,9 @@
             this.Controls.Add(this.button_check);
             this.Controls.Add(this.button_miser);
             this.Controls.Add(this.button_seCoucher);
-            this.Controls.Add(this.table);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormPartie";
             this.Text = "FormPartie";
-            ((System.ComponentModel.ISupportInitialize)(this.table)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_mise)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -262,8 +247,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox table;
         private System.Windows.Forms.Button button_seCoucher;
         private System.Windows.Forms.Button button_miser;
         private System.Windows.Forms.Button button_check;
